@@ -24,7 +24,7 @@ class Menu(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
-class Order(models.Modelmi):
+class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
     staff_id = models.ForeignKey(Staff, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
