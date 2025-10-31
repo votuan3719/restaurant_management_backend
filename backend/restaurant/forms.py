@@ -25,9 +25,9 @@ class CustomerForm(forms.ModelForm):
 class MenuItemForm(forms.ModelForm):
     class Meta:
         model = Menu
-        fields = ['category', 'name', 'description', 'price']
+        fields = ['name', 'description', 'price']
 
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ['customer_id', 'total_amount', 'status', 'date', 'time']
+        fields = ['customer_id', 'total_amount', 'status']

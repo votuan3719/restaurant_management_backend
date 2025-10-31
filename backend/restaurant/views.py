@@ -11,8 +11,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .forms import UserForm, StaffForm, CustomerForm, MenuItemForm
 from .models import Staff, Customer, Menu, Order, OrderItem
 
-from .utils.services import add_new_customer, add_new_staff, add_menu_item, update_menu_item, add_order_item
-from .utils.permissions import IsStaff, IsCustomer, IsStaffOrCustomer
+from .services import add_new_customer, add_new_staff, add_menu_item, update_menu_item, add_order_item
+from .permissions import IsStaff, IsCustomer, IsStaffOrCustomer
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated, IsStaff])
@@ -217,7 +217,6 @@ def place_order(request):
         'customer_id': customer_id,
         'total_amount': 0,
         'status': 'pending',
-        'date': date.today()
     }
     order = OrderForm(order_info)
     if order.is_valid():
