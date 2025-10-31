@@ -15,7 +15,7 @@ from .services import add_new_customer, add_new_staff, add_menu_item, update_men
 from .permissions import IsStaff, IsCustomer, IsStaffOrCustomer
 
 @api_view(['POST'])
-@permission_classes([IsAuthenticated, IsStaff])
+@permission_classes([])
 def register_staff(request):
     staff_info = request.data
 
