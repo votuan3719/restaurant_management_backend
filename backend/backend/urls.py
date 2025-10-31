@@ -1,22 +1,30 @@
-"""
-URL configuration for backend project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from restaurant import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    path('', views.restaurant, name='restaurant'),
+
+    path('api/signup/staff/', views.register_staff, name='register_staff'),
+    path('api/signup/customer/', views.register_customer, name='register_customer'),
+
+    path('api/login/', views.login, name='login'),
+
+    path('api/menu/add/', views.create_menu_item, name='create_menu_item'),
+    path('api/menu/update/', views.update_menu_item, name='update_menu_item'),
+    path('api/menu/delete/', views.delete_menu_item, name='delete_menu_item'),
+    
+    path('api/order/add/', views.place_order, name='place_order'),
+    path('api/order/view/today/', views.view_orders_today, name='view_orders_today'),
+    path('api/order/view/customer/', views.view_customer_order, name='view_customer_order'),
+    path('api/order/update/status/', views.update_order_status, name='update_order_status'),
+
+    path('api/menu/view/', views.view_menu, name='view_menu'),
+    
 ]
